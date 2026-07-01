@@ -1,3 +1,12 @@
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -13,11 +22,38 @@ public class Book extends javax.swing.JFrame {
 
     /**
      * Creates new form Book
-     */
+     */Connection con;
+ Statement stmt;
+ ResultSet rs;
     public Book() {
         initComponents();
+        connect();
     }
+public void connect()
+{
+try
+{DefaultTableModel model = (DefaultTableModel) tb.getModel();
+model.setRowCount(0);
+con=DriverManager.getConnection("jdbc:mysql://localhost:3306/librarymanagemment","root","");
+stmt=con.createStatement();
+rs=stmt.executeQuery("select * from book");
+while(rs.next()){
+model.addRow(new Object[]{rs.getString("ID"),
+rs.getString("Book_Name"),
+rs.getString("Category"),
+rs.getString("author"),
+rs.getString("Publisher"),
+rs.getString("No_of_Pages"),
+rs.getString("Edition")
+} );}
 
+}
+catch(Exception ex)
+{
+JOptionPane.showMessageDialog(this,ex.getMessage());
+}
+}
+ 
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -42,8 +78,8 @@ public class Book extends javax.swing.JFrame {
         t2 = new javax.swing.JTextField();
         t3 = new javax.swing.JTextField();
         t4 = new javax.swing.JTextField();
+        t5 = new javax.swing.JTextField();
         t6 = new javax.swing.JTextField();
-        t7 = new javax.swing.JTextField();
         b1 = new javax.swing.JButton();
         b2 = new javax.swing.JButton();
         b3 = new javax.swing.JButton();
@@ -71,25 +107,48 @@ public class Book extends javax.swing.JFrame {
                 "ID", "Book Name", "Category", "Author", "Publisher", "No of Pages", "Edition"
             }
         ));
+        tb.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tb);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 153, 255));
         jLabel2.setText("Book Name");
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 153, 255));
         jLabel3.setText("Category");
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 153, 255));
         jLabel4.setText("Author");
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 153, 255));
         jLabel5.setText("Publisher");
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 153, 255));
         jLabel7.setText("No of Pages");
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 153, 255));
         jLabel8.setText("Edition");
+
+        t1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+
+        t2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+
+        t3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+
+        t4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+
+        t5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+
+        t6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -107,11 +166,11 @@ public class Book extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(t1)
-                    .addComponent(t2, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
                     .addComponent(t3, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
                     .addComponent(t4, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
+                    .addComponent(t5, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
                     .addComponent(t6, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
-                    .addComponent(t7, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE))
+                    .addComponent(t2, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 609, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -140,11 +199,11 @@ public class Book extends javax.swing.JFrame {
                         .addGap(30, 30, 30)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(t6, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(t5, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(34, 34, 34)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(t7, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(t6, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addContainerGap(21, Short.MAX_VALUE)
@@ -155,6 +214,7 @@ public class Book extends javax.swing.JFrame {
         b1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         b1.setForeground(new java.awt.Color(153, 255, 255));
         b1.setText("Add");
+        b1.addActionListener(this::b1ActionPerformed);
 
         b2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         b2.setForeground(new java.awt.Color(153, 255, 255));
@@ -228,16 +288,118 @@ public class Book extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void b2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b2ActionPerformed
-        // TODO add your handling code here:
+try {
+       
+        String sql = "UPDATE book SET Book_Name=? ,Category=?, author=? ,Publisher=? ,No_of_Pages=? ,Edition=? WHERE ID=?";
+
+        PreparedStatement pst = con.prepareStatement(sql);
+        System.out.print(sql);
+      int row = tb.getSelectedRow();
+int id = Integer.parseInt(tb.getValueAt(row, 0).toString());
+
+               
+        pst.setString(1, t1.getText());
+        pst.setString(2, t2.getText());
+        pst.setString(3, t3.getText());
+         pst.setString(4, t4.getText()); 
+         pst.setString(5, t5.getText());
+         pst.setString(6, t6.getText());
+         
+         
+       pst.setInt(7, id);
+        pst.executeUpdate();
+      connect();
+        JOptionPane.showMessageDialog(null, "Updated Successfully");
+
+    } catch(Exception e) {
+        JOptionPane.showMessageDialog(null, e);
+    }        // TODO add your handling code here:
     }//GEN-LAST:event_b2ActionPerformed
 
     private void b3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b3ActionPerformed
+  int i = tb.getSelectedRow();
+
+    if(i >= 0)
+    {
+        String ID = tb.getValueAt(i, 0).toString();
+try
+        {
+            String sql = "DELETE FROM book WHERE ID=?";
+            PreparedStatement pst = con.prepareStatement(sql);
+            pst.setString(1, ID);
+            int x = pst.executeUpdate();
+            if(x > 0)
+            {
+                JOptionPane.showMessageDialog(this, "Row Deleted Successfully");
+                                DefaultTableModel model = (DefaultTableModel) tb.getModel();
+                model.removeRow(i);
+            }
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(this, e);
+        }
+    }
+    else
+    {
+        JOptionPane.showMessageDialog(this, "Please select a row first");
+    }    
         // TODO add your handling code here:
     }//GEN-LAST:event_b3ActionPerformed
 
     private void b4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b4ActionPerformed
-        // TODO add your handling code here:
+System.exit(0);        // TODO add your handling code here:
     }//GEN-LAST:event_b4ActionPerformed
+
+    private void b1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b1ActionPerformed
+try
+{
+String Book_Name=t1.getText();
+String Category=t2.getText();
+String author=t3.getText();
+String Publisher=t4.getText();
+String No_of_Pages=t5.getText();
+String Edition=t6.getText();
+String sql = "insert into book (Book_Name,Category,author,Publisher,No_of_Pages,Edition) values (?,?,?,?,?,?)";
+ PreparedStatement pst = con.prepareStatement(sql);
+
+pst.setString(1, Book_Name);
+pst.setString(2, Category);
+pst.setString(3, author);
+pst.setString(4, Publisher);
+pst.setString(5, No_of_Pages);
+pst.setString(6, Edition);
+pst.executeUpdate();
+JOptionPane.showMessageDialog(this,"Data Inserted Successfully");
+connect();}
+catch(Exception e){
+    e.printStackTrace();
+    JOptionPane.showMessageDialog(this, e);}
+ 
+         // TODO add your handling code here:
+    }//GEN-LAST:event_b1ActionPerformed
+
+    private void tbMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbMouseClicked
+DefaultTableModel model=   (DefaultTableModel)tb.getModel();  
+ int i= tb.getSelectedRow(); 
+  if (i>=0){
+      String ID = tb.getValueAt(i,0).toString();
+  String Book_Name = tb.getValueAt(i, 1).toString();
+  String Category = tb.getValueAt(i, 2).toString();
+  String author = tb.getValueAt(i, 3).toString();
+  String Publisher = tb.getValueAt(i, 4).toString();
+  String No_of_Pages = tb.getValueAt(i, 5).toString();
+  String Edition = tb.getValueAt(i, 6).toString();
+  t1.setText(Book_Name);
+        t2.setText(Category);
+        t3.setText(author);
+         t4.setText(Publisher);
+          t5.setText(No_of_Pages);
+           t6.setText(Edition);
+  }
+  else{JOptionPane.showMessageDialog(this,"Select row atfirst","Error",JOptionPane.ERROR_MESSAGE);}        // TODO add your handling code here:
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tbMouseClicked
 
     /**
      * @param args the command line arguments
@@ -283,8 +445,8 @@ public class Book extends javax.swing.JFrame {
     private javax.swing.JTextField t2;
     private javax.swing.JTextField t3;
     private javax.swing.JTextField t4;
+    private javax.swing.JTextField t5;
     private javax.swing.JTextField t6;
-    private javax.swing.JTextField t7;
     private javax.swing.JTable tb;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,3 +1,12 @@
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -10,14 +19,36 @@
 public class Category extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Category.class.getName());
-
+ Connection con;
+ Statement stmt;
+ ResultSet rs;
     /**
      * Creates new form Category
      */
     public Category() {
         initComponents();
+        connect();
     }
+ public void connect()
+{
+try
+{DefaultTableModel model = (DefaultTableModel) tb.getModel();
+model.setRowCount(0);
+con=DriverManager.getConnection("jdbc:mysql://localhost:3306/librarymanagemment","root","");
+stmt=con.createStatement();
+rs=stmt.executeQuery("select * from category");
+while(rs.next()){
+model.addRow(new Object[]{rs.getString("ID"),
+rs.getString("Category"),
+rs.getString("Status")
+} );}
 
+}
+catch(Exception ex)
+{
+JOptionPane.showMessageDialog(this,ex.getMessage());
+}
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -53,32 +84,42 @@ public class Category extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(51, 51, 51));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Category", javax.swing.border.TitledBorder.LEADING, javax.swing.border.TitledBorder.ABOVE_TOP, new java.awt.Font("Segoe UI", 1, 12), new java.awt.Color(0, 102, 102))); // NOI18N
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 153, 255));
         jLabel2.setText("Category");
 
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 153, 255));
         jLabel3.setText("Status");
 
+        t1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+
+        t2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         t2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select", "Active", "Completed" }));
 
         b1.setBackground(new java.awt.Color(102, 102, 102));
         b1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         b1.setForeground(new java.awt.Color(153, 255, 255));
         b1.setText("Add");
+        b1.addActionListener(this::b1ActionPerformed);
 
         b2.setBackground(new java.awt.Color(102, 102, 102));
         b2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         b2.setForeground(new java.awt.Color(153, 255, 255));
         b2.setText("Edit");
+        b2.addActionListener(this::b2ActionPerformed);
 
         b3.setBackground(new java.awt.Color(102, 102, 102));
         b3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         b3.setForeground(new java.awt.Color(153, 255, 255));
         b3.setText("Delete");
+        b3.addActionListener(this::b3ActionPerformed);
 
         b4.setBackground(new java.awt.Color(102, 102, 102));
         b4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         b4.setForeground(new java.awt.Color(153, 255, 255));
         b4.setText("Cancel");
-        b4.setActionCommand("Cancel");
+        b4.addActionListener(this::b4ActionPerformed);
 
         tb.setBackground(new java.awt.Color(102, 102, 102));
         tb.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -99,6 +140,11 @@ public class Category extends javax.swing.JFrame {
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+        });
+        tb.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(tb);
@@ -194,6 +240,100 @@ public class Category extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void b1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b1ActionPerformed
+try
+{
+String Category=t1.getText();
+String Status=t2.getSelectedItem().toString();
+
+
+String sql = "insert into category (Category,Status) values (?,?)";
+ PreparedStatement pst = con.prepareStatement(sql);
+
+pst.setString(1, Category);
+pst.setString(2, Status);
+pst.executeUpdate();
+JOptionPane.showMessageDialog(this,"Data Inserted Successfully");
+connect();}
+catch(Exception e){
+    e.printStackTrace();
+    JOptionPane.showMessageDialog(this, e);}        // TODO add your handling code here:
+    }//GEN-LAST:event_b1ActionPerformed
+
+    private void b2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b2ActionPerformed
+try {
+       
+        String sql = "UPDATE category SET Category=?, Status=? WHERE ID=?";
+
+        PreparedStatement pst = con.prepareStatement(sql);
+        System.out.print(sql);
+      int row = tb.getSelectedRow();
+int id = Integer.parseInt(tb.getValueAt(row, 0).toString());
+
+               
+        pst.setString(1, t1.getText());
+        pst.setString(2, t2.getSelectedItem().toString());
+        pst.setInt(3, id);
+        pst.executeUpdate();
+      connect();
+        JOptionPane.showMessageDialog(null, "Updated Successfully");
+
+    } catch(Exception e) {
+        JOptionPane.showMessageDialog(null, e);
+    }        // TODO add your handling code here:
+    }//GEN-LAST:event_b2ActionPerformed
+
+    private void b3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b3ActionPerformed
+ int i = tb.getSelectedRow();
+if(i >= 0)
+    {
+        String ID = tb.getValueAt(i, 0).toString();
+try
+        {
+            String sql = "DELETE FROM category WHERE ID=?";
+            PreparedStatement pst = con.prepareStatement(sql);
+             pst.setString(1, ID);
+            int x = pst.executeUpdate();
+            if(x > 0)
+            {
+                JOptionPane.showMessageDialog(this, "Row Deleted Successfully");
+                DefaultTableModel model = (DefaultTableModel) tb.getModel();
+                model.removeRow(i);
+            }
+}
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(this, e);
+        }
+    }
+    else
+    {
+        JOptionPane.showMessageDialog(this, "Please select a row first");
+    }    
+         // TODO add your handling code here:
+    }//GEN-LAST:event_b3ActionPerformed
+
+    private void b4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b4ActionPerformed
+System.exit(0);        // TODO add your handling code here:
+    }//GEN-LAST:event_b4ActionPerformed
+
+    private void tbMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbMouseClicked
+     System.out.println("Row clicked");
+    int i = tb.getSelectedRow();
+
+    if(i >= 0) {
+        String ID = tb.getValueAt(i, 0).toString();
+        String Category = tb.getValueAt(i, 1).toString();
+        t1.setText(Category);
+        t2.setSelectedItem(tb.getValueAt(i, 2).toString().trim());
+        System.out.println("Status = " + tb.getValueAt(i, 2));
+    } 
+    else {
+        JOptionPane.showMessageDialog(this, "Select row at first");
+    }    // TODO add your handling code here:
+    }//GEN-LAST:event_tbMouseClicked
+
 
     /**
      * @param args the command line arguments

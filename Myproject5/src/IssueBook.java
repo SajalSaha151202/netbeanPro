@@ -1,3 +1,14 @@
+import java.sql.Connection;
+import java.sql.Statement;
+import java.sql.ResultSet;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.text.SimpleDateFormat;
+
+import java.util.Date;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -14,9 +25,36 @@ public class IssueBook extends javax.swing.JFrame {
     /**
      * Creates new form IssueBook
      */
+    Connection con;
+    Statement stmt;
+    ResultSet rs;
     public IssueBook() {
         initComponents();
-    }
+   connect(); }
+    public void connect()
+{
+try
+{DefaultTableModel model = (DefaultTableModel) tb.getModel();
+model.setRowCount(0);
+con=DriverManager.getConnection("jdbc:mysql://localhost:3306/librarymanagemment","root","");
+stmt=con.createStatement();
+rs=stmt.executeQuery("select * from issue_book");
+while(rs.next()){
+model.addRow(new Object[]{rs.getString("Member_Id"),
+rs.getString("Member_Name"),
+rs.getString("Book"),
+rs.getString("Issue_Date"),
+rs.getString("Return_Date")
+} );}
+
+}
+catch(Exception ex)
+{
+JOptionPane.showMessageDialog(this,ex.getMessage());
+}
+}
+ 
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -85,29 +123,39 @@ public class IssueBook extends javax.swing.JFrame {
                 "Member ID", "Member Name", "Book", "Issue Date", "Return Date"
             }
         ));
+        tb.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tb);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(204, 255, 255));
+        jLabel2.setForeground(new java.awt.Color(255, 153, 255));
         jLabel2.setText("Member Id");
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(204, 255, 255));
+        jLabel3.setForeground(new java.awt.Color(255, 153, 255));
         jLabel3.setText("Member Name");
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(204, 255, 255));
+        jLabel4.setForeground(new java.awt.Color(255, 153, 255));
         jLabel4.setText("Book");
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(204, 255, 255));
+        jLabel5.setForeground(new java.awt.Color(255, 153, 255));
         jLabel5.setText("Date");
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(204, 255, 255));
+        jLabel6.setForeground(new java.awt.Color(255, 153, 255));
         jLabel6.setText("Return");
 
-        t3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        t1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+
+        t2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+
+        t3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        t3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select", "Jib Vidya", "Ayush", "Padrathabid", "Rasayanbid" }));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -166,18 +214,22 @@ public class IssueBook extends javax.swing.JFrame {
         b2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         b2.setForeground(new java.awt.Color(153, 255, 255));
         b2.setText("Edit");
+        b2.addActionListener(this::b2ActionPerformed);
 
         b1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         b1.setForeground(new java.awt.Color(153, 255, 255));
         b1.setText("Add");
+        b1.addActionListener(this::b1ActionPerformed);
 
         b3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         b3.setForeground(new java.awt.Color(153, 255, 255));
         b3.setText("Delete");
+        b3.addActionListener(this::b3ActionPerformed);
 
         b4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         b4.setForeground(new java.awt.Color(153, 255, 255));
         b4.setText("Cancel");
+        b4.addActionListener(this::b4ActionPerformed);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -242,6 +294,122 @@ public class IssueBook extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void b1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b1ActionPerformed
+try
+{
+String Member_Id=t1.getText();
+String Member_Name=t2.getText();
+String Book=t3.getSelectedItem().toString();
+java.sql.Date Issue_Date = new java.sql.Date(t4.getDate().getTime());
+java.sql.Date Return_Date = new java.sql.Date(t5.getDate().getTime());
+
+
+
+String sql = "insert into issue_book (Member_Id,Member_Name,Book,Issue_Date,Return_Date) values (?,?,?,?,?)";
+ PreparedStatement pst = con.prepareStatement(sql);
+
+pst.setString(1, Member_Id);
+pst.setString(2, Member_Name);
+pst.setString(3, Book);
+pst.setDate(4, Issue_Date);
+pst.setDate(5, Return_Date);
+pst.executeUpdate();
+JOptionPane.showMessageDialog(this,"Data Inserted Successfully");
+connect();}
+catch(Exception e){
+    e.printStackTrace();
+    JOptionPane.showMessageDialog(this, e);}        // TODO add your handling code here:
+    }//GEN-LAST:event_b1ActionPerformed
+
+    private void b2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b2ActionPerformed
+ try {
+       
+        String sql = "UPDATE issue_book SET Member_Name=?, Book=?, Issue_Date=?, Return_Date=? WHERE Member_Id=?";
+
+        PreparedStatement pst = con.prepareStatement(sql);
+        System.out.print(sql);
+      int row = tb.getSelectedRow();
+int Member_Id = Integer.parseInt(tb.getValueAt(row, 0).toString());
+java.sql.Date Issue_Date = new java.sql.Date(t4.getDate().getTime());
+java.sql.Date Return_Date = new java.sql.Date(t5.getDate().getTime());
+
+               
+       
+        pst.setString(1, t2.getText());
+        pst.setString(2, t3.getSelectedItem().toString());
+        pst.setDate(3,Issue_Date);
+        pst.setDate(4,Return_Date);
+       pst.setString(5, t1.getText());
+        pst.executeUpdate();
+      connect();
+        JOptionPane.showMessageDialog(null, "Updated Successfully");
+
+    } catch(Exception e) {
+        JOptionPane.showMessageDialog(null, e);
+    }        // TODO add your handling code here:
+    }//GEN-LAST:event_b2ActionPerformed
+
+    private void tbMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbMouseClicked
+DefaultTableModel model=   (DefaultTableModel)tb.getModel();  
+try{
+     int i= tb.getSelectedRow();
+ 
+  if (i>=0){
+      String Member_Id = tb.getValueAt(i,0).toString();
+  String Member_Name = tb.getValueAt(i, 1).toString();
+  String Book = tb.getValueAt(i, 2).toString();
+ 
+        t1.setText(Member_Id);
+        t2.setText(Member_Name);
+        t3.setSelectedItem(Book);
+         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+            Date issueDate = sdf.parse(tb.getValueAt(i, 3).toString());
+            Date returnDate = sdf.parse(tb.getValueAt(i, 4).toString());
+
+            // Set date into JDateChooser
+            t4.setDate(issueDate);
+            t5.setDate(returnDate);
+  }
+  else{JOptionPane.showMessageDialog(this,"Select row atfirst","Error",JOptionPane.ERROR_MESSAGE);}  }
+    catch(Exception e){
+JOptionPane.showMessageDialog(this,e);}// TODO add your handling code here:
+    }//GEN-LAST:event_tbMouseClicked
+
+    private void b3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b3ActionPerformed
+  int i = tb.getSelectedRow();
+    if(i >= 0)
+    {
+        String ID = tb.getValueAt(i, 0).toString();
+try
+        {
+            String sql = "DELETE FROM issue_book WHERE Member_Id=?";
+            PreparedStatement pst = con.prepareStatement(sql);
+            pst.setString(1, ID);
+            int x = pst.executeUpdate();
+            if(x > 0)
+            {
+                JOptionPane.showMessageDialog(this, "Row Deleted Successfully");
+                                DefaultTableModel model = (DefaultTableModel) tb.getModel();
+                model.removeRow(i);
+            }
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(this, e);
+        }
+    }
+    else
+    {
+        JOptionPane.showMessageDialog(this, "Please select a row first");
+    }    
+        // TODO add your handling code here:
+    }//GEN-LAST:event_b3ActionPerformed
+
+    private void b4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b4ActionPerformed
+System.exit(0);        // TODO add your handling code here:
+    }//GEN-LAST:event_b4ActionPerformed
 
     /**
      * @param args the command line arguments
