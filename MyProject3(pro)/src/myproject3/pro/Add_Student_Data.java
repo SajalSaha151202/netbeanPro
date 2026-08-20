@@ -4,7 +4,8 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
 import java.sql.PreparedStatement;
-import javax.swing.table.DefaultTableModel;
+import java.util.Date;
+import java.text.SimpleDateFormat;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -52,13 +53,13 @@ catch(Exception ex)
 JOptionPane.showMessageDialog(this,ex.getMessage());
 }
 }
-public void setData(String Sid,String Fname,String Lname,String Class, String Year,String Dob,String Contact,String email,String Gender, String P_Add,String Pr_Add){
+public void setData(String Sid,String Fname,String Lname,String Class, String Year,Date Dob,String Contact,String email,String Gender, String P_Add,String Pr_Add){
 st1.setText(Sid);
 st2.setText(Fname);
 st3.setText(Lname);
 st4.setText(Class);
 st5.setText(Year);
-st6.setText(Dob);
+st6.setDate(Dob);
 st7.setText(Contact);
 st8.setText(email);
 st9.setText(P_Add);
@@ -67,7 +68,7 @@ if(Gender=="M"){
 sr1.setSelected(true);
 }else if(Gender=="F"){
 sr2.setSelected(true);}
-else if(Gender =="T"){
+else if(Gender=="T"){
 sr3.setSelected(true);}}
     /**
      * This method is called from within the constructor to initialize the form.
@@ -102,15 +103,15 @@ sr3.setSelected(true);}}
         sr3 = new javax.swing.JRadioButton();
         sr2 = new javax.swing.JRadioButton();
         jLabel11 = new javax.swing.JLabel();
-        st6 = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
         st10 = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        st6 = new de.wannawork.jcalendar.JCalendarComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jPanel2.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel2.setBackground(new java.awt.Color(0, 0, 0));
 
         jLabel2.setFont(new java.awt.Font("Stencil", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 0));
@@ -182,8 +183,6 @@ sr3.setSelected(true);}}
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel11.setText("DOB");
 
-        st6.addActionListener(this::st6ActionPerformed);
-
         jLabel13.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(204, 255, 255));
         jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -204,6 +203,8 @@ sr3.setSelected(true);}}
         jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jButton4.addActionListener(this::jButton4ActionPerformed);
+
+        st6.setDate(new java.util.Date(1785859708000L));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -235,12 +236,12 @@ sr3.setSelected(true);}}
                                 .addGap(129, 129, 129)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(st8, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(st6, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(st2, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(st3, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(st4, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(st5, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(st7, javax.swing.GroupLayout.Alignment.TRAILING))))
+                                    .addComponent(st7, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(st6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addGap(21, 21, 21))))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(35, 35, 35)
@@ -293,10 +294,10 @@ sr3.setSelected(true);}}
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(st5, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(st6, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+                    .addComponent(st6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(29, 29, 29)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(st7, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -347,7 +348,8 @@ String fname=st2.getText();
 String Lname=st3.getText();
 String Class=st4.getText();
 String year=st5.getText();
-String dob=st6.getText();
+SimpleDateFormat sdf = new SimpleDateFormat("dd MMM yyyy");
+String dob = sdf.format(st6.getDate());
 String contact=st7.getText();
 String emailid=st8.getText();
 String gender=""; 
@@ -367,17 +369,17 @@ gender = "T";
 String PR_ADDRESS=st10.getText(); 
 String sql = "insert into std (Sid,Fname,Lname,Class,Year,Dob,Contact,email,Gender,P_Add,Pr_Add) values (?,?,?,?,?,?,?,?,?,?,?)";
  PreparedStatement pst = con.prepareStatement(sql);
-pst.setString(0, SID);
-pst.setString(1, fname);
-pst.setString(2, Lname);
-pst.setString(3, Class);
-pst.setString(4, year);
-pst.setString(5, dob);
-pst.setString(6, contact);
-pst.setString(7, emailid);
-pst.setString(8, gender);
-pst.setString(9, P_ADDRESS);
-pst.setString(10, PR_ADDRESS);
+pst.setString(1, SID);
+pst.setString(2, fname);
+pst.setString(3, Lname);
+pst.setString(4, Class);
+pst.setString(5, year);
+pst.setString(6, dob);
+pst.setString(7, contact);
+pst.setString(8, emailid);
+pst.setString(9, gender);
+pst.setString(10, P_ADDRESS);
+pst.setString(11, PR_ADDRESS);
 pst.executeUpdate();
 JOptionPane.showMessageDialog(this,"Data Inserted Successfully");}
 catch(Exception e){
@@ -418,12 +420,13 @@ else if( sr3.isSelected())
 {
 gender = "T";
 }
-               
+        SimpleDateFormat sdf = new SimpleDateFormat("dd MMM yyyy");
+        String dob = sdf.format(st6.getDate());      
         pst.setString(1, st2.getText());
         pst.setString(2, st3.getText());
         pst.setString(3, st4.getText());
         pst.setString(4, st5.getText());
-        pst.setString(5, st6.getText());
+        pst.setString(5, dob);
         pst.setString(6, st7.getText());
         pst.setString(7, st8.getText());
         pst.setString(8, gender);
@@ -437,10 +440,10 @@ gender = "T";
     } catch(Exception e) {
         JOptionPane.showMessageDialog(null, e);
     }    }//GEN-LAST:event_jButton4ActionPerformed
-
-    private void st6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_st6ActionPerformed
+ 
+    private void st6ActionPerformed(java.awt.event.ActionEvent evt) {                                    
         // TODO add your handling code here:
-    }//GEN-LAST:event_st6ActionPerformed
+    }                                   
 
     /**
      * @param args the command line arguments
@@ -493,7 +496,7 @@ gender = "T";
     public javax.swing.JTextField st3;
     public javax.swing.JTextField st4;
     public javax.swing.JTextField st5;
-    public javax.swing.JTextField st6;
+    public de.wannawork.jcalendar.JCalendarComboBox st6;
     public javax.swing.JTextField st7;
     public javax.swing.JTextField st8;
     public javax.swing.JTextField st9;

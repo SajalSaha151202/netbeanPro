@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -84,9 +86,10 @@ JOptionPane.showMessageDialog(this,ex.getMessage());
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
 
         jLabel1.setFont(new java.awt.Font("Stencil", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 0));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Student Details");
 
@@ -219,7 +222,12 @@ obj.setVisible(true);
         obj1.st3.setText(Lname);
         obj1.st4.setText(Class);
         obj1.st5.setText(Year);
-        obj1.st6.setText(Dob);
+        try {
+    Date date = new SimpleDateFormat("dd MMM yyyy").parse(Dob);
+    obj1.st6.setDate(date);
+} catch (Exception e) {
+    e.printStackTrace();
+}
         obj1.st7.setText(Contact);
         obj1.st8.setText(email);
         obj1.st9.setText(P_Add);

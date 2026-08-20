@@ -1,3 +1,6 @@
+
+import myproject3.pro.Faculty;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -37,10 +40,10 @@ public class AdminPanel extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
 
         jLabel1.setFont(new java.awt.Font("Stencil", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setForeground(new java.awt.Color(255, 255, 0));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("ADMIN PANEL");
 
@@ -60,11 +63,13 @@ public class AdminPanel extends javax.swing.JFrame {
         b3.setFont(new java.awt.Font("Wide Latin", 1, 14)); // NOI18N
         b3.setForeground(new java.awt.Color(204, 255, 255));
         b3.setText("Facualty");
+        b3.addActionListener(this::b3ActionPerformed);
 
         b4.setBackground(new java.awt.Color(153, 153, 153));
         b4.setFont(new java.awt.Font("Wide Latin", 1, 14)); // NOI18N
         b4.setForeground(new java.awt.Color(204, 255, 255));
         b4.setText("Fee Details");
+        b4.addActionListener(this::b4ActionPerformed);
 
         b5.setBackground(new java.awt.Color(153, 153, 153));
         b5.setFont(new java.awt.Font("Wide Latin", 1, 14)); // NOI18N
@@ -146,6 +151,17 @@ public class AdminPanel extends javax.swing.JFrame {
     private void b5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b5ActionPerformed
         System.exit(0);        // TODO add your handling code here:
     }//GEN-LAST:event_b5ActionPerformed
+
+    private void b4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b4ActionPerformed
+ Fees_Details obj= new Fees_Details();     
+ obj.setVisible(true);// TODO add your handling code here:
+    }//GEN-LAST:event_b4ActionPerformed
+
+    private void b3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b3ActionPerformed
+ Faculty obj=new Faculty();
+       
+        obj.setVisible(true);           // TODO add your handling code here:
+    }//GEN-LAST:event_b3ActionPerformed
 
     /**
      * @param args the command line arguments

@@ -40,7 +40,7 @@
     <Container class="javax.swing.JPanel" name="jPanel2">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="33" green="33" red="33" type="rgb"/>
+          <Color blue="0" green="0" red="0" type="rgb"/>
         </Property>
       </Properties>
 
@@ -76,12 +76,12 @@
                                   <EmptySpace min="129" pref="129" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="st8" alignment="1" max="32767" attributes="0"/>
-                                      <Component id="st6" alignment="1" max="32767" attributes="0"/>
                                       <Component id="st2" alignment="1" max="32767" attributes="0"/>
                                       <Component id="st3" alignment="1" max="32767" attributes="0"/>
                                       <Component id="st4" alignment="1" max="32767" attributes="0"/>
                                       <Component id="st5" alignment="1" max="32767" attributes="0"/>
                                       <Component id="st7" alignment="1" max="32767" attributes="0"/>
+                                      <Component id="st6" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -153,11 +153,11 @@
                       <Component id="st5" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel11" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
-                      <Component id="st6" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="jLabel11" pref="35" max="32767" attributes="0"/>
+                      <Component id="st6" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel7" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                       <Component id="st7" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
@@ -416,14 +416,6 @@
             <Property name="text" type="java.lang.String" value="DOB"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="st6">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="st6ActionPerformed"/>
-          </Events>
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
-          </AuxValues>
-        </Component>
         <Component class="javax.swing.JLabel" name="jLabel13">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -474,6 +466,16 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton4ActionPerformed"/>
           </Events>
+        </Component>
+        <Component class="de.wannawork.jcalendar.JCalendarComboBox" name="st6">
+          <Properties>
+            <Property name="date" type="java.util.Date" editor="org.netbeans.beaninfo.editors.DateEditor">
+              <SerializedValue value="-84,-19,0,5,115,114,0,14,106,97,118,97,46,117,116,105,108,46,68,97,116,101,104,106,-127,1,75,89,116,25,3,0,0,120,112,119,8,0,0,1,-97,-51,-120,-108,96,120"/>
+            </Property>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+          </AuxValues>
         </Component>
       </SubComponents>
     </Container>

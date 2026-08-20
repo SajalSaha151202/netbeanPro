@@ -113,7 +113,7 @@ tr3.setSelected(true);}}
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
 
         jLabel1.setFont(new java.awt.Font("Stencil", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 0));
@@ -386,6 +386,7 @@ catch(Exception e){
         String sql = "UPDATE teacher SET Fname=?, Lname=?, age=?, Dept=?, Contact=?, Email=?, Gender=?, Address=? WHERE Tid=?";
 
         PreparedStatement pst = con.prepareStatement(sql);
+        System.out.print(sql);
         String gender=""; 
 if(tr1.isSelected())
 {
