@@ -1,4 +1,4 @@
-# Calculator
+# Restaurant
 
 This is a Restaurant application developed using Java and NetBeans.
 
