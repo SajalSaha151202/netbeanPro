@@ -4,7 +4,7 @@ This is a Data Fetching application developed using Java and NetBeans.
 
 ## Download
 
-[Download myproject4.exe]([PUT-YOUR-CALCULATOR-RELEASE-LINK-HERE](https://github.com/SajalSaha151202/netbeanPro/releases/download/datafetch_v1.0/myproject4.exe))
+[Download myproject4.exe](https://github.com/SajalSaha151202/netbeanPro/releases/download/datafetch_v1.0/myproject4.exe)
 
 ## How to Run
 
