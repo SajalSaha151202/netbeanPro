@@ -4,7 +4,7 @@ This is a Calculator application developed using Java and NetBeans.
 
 ## Download
 
-[Download Calculator.exe] (https://github.com/SajalSaha151202/netbeanPro/releases/download/calculator-v1.0/calculator.exe)
+[Download Calculator.exe](https://github.com/SajalSaha151202/netbeanPro/releases/download/calculator-v1.0/calculator.exe)
 
 ## How to Run
 
