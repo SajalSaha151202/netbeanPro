@@ -1,4 +1,4 @@
-# Calculator
+# Library Management
 
 This is a Library Management application developed using Java and NetBeans.
 
