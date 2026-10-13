@@ -25,12 +25,12 @@ public class Author extends javax.swing.JFrame {
      */Connection con;
  Statement stmt;
  ResultSet rs;
- FormFrame form;
+
     public Author() {
         initComponents();
     
   connect();
-        this.form=form;
+       
     }
     public void connect()
 {
@@ -46,7 +46,7 @@ rs.getString("Name"),
 rs.getString("Address"),
 rs.getString("Phone"),
 } );}
-con.close();
+
 }
 catch(Exception ex)
 {
@@ -93,6 +93,8 @@ JOptionPane.showMessageDialog(this,ex.getMessage());
         jPanel2.setBackground(new java.awt.Color(51, 51, 51));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Author", javax.swing.border.TitledBorder.LEADING, javax.swing.border.TitledBorder.ABOVE_TOP, new java.awt.Font("Segoe UI", 1, 12), new java.awt.Color(0, 102, 102))); // NOI18N
 
+        tb.setBackground(new java.awt.Color(102, 102, 102));
+        tb.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         tb.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -395,9 +397,5 @@ System.exit(0);        // TODO add your handling code here:
     private javax.swing.JTable tb;
     // End of variables declaration//GEN-END:variables
 
-    private static class FormFrame {
-
-        public FormFrame() {
-        }
-    }
+   
 }

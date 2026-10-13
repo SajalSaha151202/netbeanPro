@@ -86,6 +86,10 @@ JOptionPane.showMessageDialog(this,ex.getMessage());
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Members");
 
+        jPanel2.setBackground(new java.awt.Color(51, 51, 51));
+
+        tb.setBackground(new java.awt.Color(102, 102, 102));
+        tb.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         tb.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
