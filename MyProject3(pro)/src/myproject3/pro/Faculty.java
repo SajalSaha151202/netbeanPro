@@ -291,7 +291,7 @@ String Position=tt4.getText();
 String Age=tt5.getText();
 String Contact=tt6.getText();
 String Email=tt7.getText();
-String Gender=" "; 
+String Gender=""; 
 if(c1.isSelected())
 {
 Gender = "M";
@@ -306,18 +306,18 @@ Gender = "T";
 }
  String P_Address=tt8.getText();
  String Pr_Address=tt9.getText();
-String sql = "insert into teacher (FName,LName,Age,Contact,Email,Gender,P_Address,Pr_Address) values (?,?,?,?,?,?,?,?)";
+String sql = "insert into faculty (FName,LName,Position,Age,Contact,Email,Gender,P_Address,Pr_Address) values (?,?,?,?,?,?,?,?,?)";
  PreparedStatement pst = con.prepareStatement(sql);
 
 pst.setString(1, FName);
 pst.setString(2, LName);
-pst.setString(3, Age);
-
-pst.setString(4, Contact);
-pst.setString(5, Email);
-pst.setString(6, Gender);
-pst.setString(7,P_Address);
-pst.setString(8, Pr_Address);
+pst.setString(3, Position);
+pst.setString(4, Age);
+pst.setString(5, Contact);
+pst.setString(6, Email);
+pst.setString(7, Gender);
+pst.setString(8,P_Address);
+pst.setString(9, Pr_Address);
 
 pst.executeUpdate();
 JOptionPane.showMessageDialog(this,"Data Inserted Successfully");
