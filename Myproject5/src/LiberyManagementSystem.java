@@ -28,7 +28,7 @@ public class LiberyManagementSystem extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         b1 = new javax.swing.JButton();
         b2 = new javax.swing.JButton();
         b3 = new javax.swing.JButton();
@@ -36,57 +36,60 @@ public class LiberyManagementSystem extends javax.swing.JFrame {
         b5 = new javax.swing.JButton();
         b6 = new javax.swing.JButton();
         b8 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Home Page");
+        jLabel2.setFont(new java.awt.Font("Segoe UI Black", 1, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(51, 51, 255));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Home Page");
 
-        b1.setBackground(new java.awt.Color(102, 102, 102));
+        b1.setBackground(new java.awt.Color(0, 102, 102));
         b1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         b1.setForeground(new java.awt.Color(153, 255, 255));
         b1.setText("Category");
         b1.addActionListener(this::b1ActionPerformed);
 
-        b2.setBackground(new java.awt.Color(102, 102, 102));
+        b2.setBackground(new java.awt.Color(0, 102, 102));
         b2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         b2.setForeground(new java.awt.Color(153, 255, 255));
         b2.setText("Author");
         b2.addActionListener(this::b2ActionPerformed);
 
-        b3.setBackground(new java.awt.Color(102, 102, 102));
+        b3.setBackground(new java.awt.Color(0, 102, 102));
         b3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         b3.setForeground(new java.awt.Color(153, 255, 255));
         b3.setText("Publisher");
         b3.addActionListener(this::b3ActionPerformed);
 
-        b4.setBackground(new java.awt.Color(102, 102, 102));
+        b4.setBackground(new java.awt.Color(0, 102, 102));
         b4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         b4.setForeground(new java.awt.Color(153, 255, 255));
         b4.setText("Book");
         b4.addActionListener(this::b4ActionPerformed);
 
-        b5.setBackground(new java.awt.Color(102, 102, 102));
+        b5.setBackground(new java.awt.Color(0, 102, 102));
         b5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         b5.setForeground(new java.awt.Color(153, 255, 255));
         b5.setText("Member");
         b5.addActionListener(this::b5ActionPerformed);
 
-        b6.setBackground(new java.awt.Color(102, 102, 102));
+        b6.setBackground(new java.awt.Color(0, 102, 102));
         b6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         b6.setForeground(new java.awt.Color(153, 255, 255));
         b6.setText("Issue & Return Books");
         b6.addActionListener(this::b6ActionPerformed);
 
-        b8.setBackground(new java.awt.Color(102, 102, 102));
+        b8.setBackground(new java.awt.Color(0, 102, 102));
         b8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         b8.setForeground(new java.awt.Color(153, 255, 255));
         b8.setText("Logout");
         b8.addActionListener(this::b8ActionPerformed);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\tss30\\OneDrive\\Desktop\\project\\Myproject5\\src\\image\\pexels-gunnar-ridderstrom-2700496-4318442(1)(1).jpg")); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -106,14 +109,16 @@ public class LiberyManagementSystem extends javax.swing.JFrame {
                             .addComponent(b1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(34, 34, 34)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(48, Short.MAX_VALUE))
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(40, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 410, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(26, 26, 26)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(b1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
@@ -129,19 +134,21 @@ public class LiberyManagementSystem extends javax.swing.JFrame {
                 .addGap(30, 30, 30)
                 .addComponent(b8, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(76, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addComponent(jLabel1)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -216,6 +223,7 @@ System.exit(0);        // TODO add your handling code here:
     private javax.swing.JButton b6;
     private javax.swing.JButton b8;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

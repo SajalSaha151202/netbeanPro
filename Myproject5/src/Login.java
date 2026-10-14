@@ -40,66 +40,62 @@ public class Login extends javax.swing.JFrame {
         t1 = new javax.swing.JTextField();
         t2 = new javax.swing.JPasswordField();
         jCheckBox1 = new javax.swing.JCheckBox();
-        b1 = new javax.swing.JButton();
         b2 = new javax.swing.JButton();
+        b1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Stencil", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(102, 0, 102));
-        jLabel1.setText("Smriti Library Management");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 10, 390, 30));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Stencil", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 0));
+        jLabel1.setText("Smriti Library Management");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 40, 390, 30));
+
+        jLabel3.setFont(new java.awt.Font("Stencil", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("User ID");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, -1, -1));
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Stencil", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Password");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, -1, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, -1, -1));
 
+        t1.setBackground(new java.awt.Color(204, 204, 204));
         t1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        getContentPane().add(t1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 80, 220, 30));
+        jPanel1.add(t1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 80, 220, 30));
 
+        t2.setBackground(new java.awt.Color(204, 204, 204));
         t2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        getContentPane().add(t2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, 220, 30));
+        jPanel1.add(t2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, 220, 30));
 
+        jCheckBox1.setBackground(new java.awt.Color(204, 204, 204));
         jCheckBox1.addActionListener(this::jCheckBox1ActionPerformed);
-        getContentPane().add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 190, -1, -1));
-
-        b1.setBackground(new java.awt.Color(255, 255, 255));
-        b1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        b1.setForeground(new java.awt.Color(0, 0, 0));
-        b1.setText("Login ");
-        b1.addActionListener(this::b1ActionPerformed);
-        getContentPane().add(b1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, 200, 40));
+        jPanel1.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 190, 20, 20));
 
         b2.setBackground(new java.awt.Color(153, 153, 153));
         b2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         b2.setForeground(new java.awt.Color(0, 0, 255));
         b2.setText("Forgot User/Password");
         b2.addActionListener(this::b2ActionPerformed);
-        getContentPane().add(b2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 250, 210, -1));
+        jPanel1.add(b2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 230, 210, -1));
+
+        b1.setBackground(new java.awt.Color(255, 255, 255));
+        b1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        b1.setForeground(new java.awt.Color(0, 0, 0));
+        b1.setText("Login ");
+        b1.addActionListener(this::b1ActionPerformed);
+        jPanel1.add(b1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, 200, 40));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\tss30\\OneDrive\\Pictures\\Screenshots\\Screenshot 2026-06-30 203012(1).png")); // NOI18N
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 352));
+        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\tss30\\OneDrive\\Desktop\\project\\Myproject5\\src\\image\\pexels-gunnar-ridderstrom-2700496-4318442(1).jpg")); // NOI18N
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 300));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 590, 300));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
